@@ -5,3 +5,8 @@ import { dummyApi } from "../services/api";
 export async function fetchAllProducts() {
     return await dummyApi.get("/products");
 }
+
+export async function getProductId(id) { 
+    return await dummyApi.get(`/products/${id}`);
+}
+    

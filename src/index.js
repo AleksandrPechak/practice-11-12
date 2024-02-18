@@ -1,7 +1,8 @@
 import "./styles/normalize.css";
 import "./styles/index.css";
-import { fetchAllProducts } from "./requests/products"; // http requests
-import { markupAllProducts } from "./services/markupService"; // Products markup fucntion
+import { fetchAllProducts, getProductId } from "./requests/products"; // http requests
+import { markupAllProducts,markupProductId } from "./services/markupService"; // Products markup fucntion
+
 // Завдання 1.
 // Створи функцію для отримання інформації про всі продукти з подальшим рендером списку.
 const allProducts = document.querySelector("#allProducts");
@@ -12,3 +13,21 @@ fetchAllProducts().then(({ data: { products } }) => {
     const markupCartsProducts = markupAllProducts(products);
     allProducts.insertAdjacentHTML('beforeend', markupCartsProducts);
 });
+// Завдання 2.
+// Реалізуй пошук і рендер інформації про продукт по його ID.
+const singleProductForm = document.querySelector('#singleProductForm');
+const singleProduct = document.querySelector('#singleProduct');
+singleProductForm.addEventListener('submit', findProductById)
+
+function findProductById(e) {
+    e.preventDefault();
+    const productId = e.target.elements.id.value;
+    // getProductId(productId).then(console.log);
+    getProductId(productId).then(({ data }) => { 
+        const markupProductCart = markupProductId(data);
+        singleProduct.innerHTML = markupProductCart;
+        singleProductForm.reset();
+    })
+
+        
+}
