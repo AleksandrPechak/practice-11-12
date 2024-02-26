@@ -40,6 +40,7 @@ function findProductById(e) {
 
 // Завдання 3.
 // Створи і отрендери новий продукт.
+//додай завдання
 const newProductSection = document.querySelector("#newProductSection");
 const newProductForm = document.querySelector(".newProductForm");
 newProductForm.addEventListener("submit", addNewProduct);
